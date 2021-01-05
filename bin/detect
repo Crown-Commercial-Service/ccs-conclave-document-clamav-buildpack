@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "ClamAV"
+exit 0

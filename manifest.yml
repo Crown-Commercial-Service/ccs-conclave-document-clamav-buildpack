@@ -1,0 +1,12 @@
+default_versions: []
+dependencies: []
+dependency_deprecation_dates: []
+include_files:
+  - VERSION
+  - bin/supply
+  - bin/detect
+  - bin/compile
+  - bin/release
+  - manifest.yml
+language: sidecar
+stack: cflinuxfs3
