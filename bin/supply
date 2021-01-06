@@ -170,7 +170,7 @@ echo "-----> Running sidecar supply"
 echo '---
 processes:
 - type: "clamav-sidecar"
-  command: "while true; do echo hello from a sidecar; sleep 10; done"
+  command: "clamdscan -V"
   limits:
     memory: 256
   platforms:
