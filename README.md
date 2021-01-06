@@ -1,1 +1,1 @@
-# clamav-sidecar
+# clamav-buildpack
