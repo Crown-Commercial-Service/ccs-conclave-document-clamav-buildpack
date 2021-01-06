@@ -139,6 +139,7 @@ cache="$2" # /app/tmp/cache
 set -e # Raise errors if anything goes wrong
 
 # Create the config file for the daemon:
+echo "The build path is: ${build}"
 touch "${build}/config/antivirus/clamd.conf"
 echo "LocalSocket /app/config/antivirus/clamd.sock" > "${build}/config/antivirus/clamd.conf"
 
