@@ -3,9 +3,8 @@ dependencies: []
 dependency_deprecation_dates: []
 include_files:
   - VERSION
-  - bin/supply
   - bin/detect
-  - bin/compile
+  - bin/finalize
   - bin/release
   - manifest.yml
 language: sidecar
