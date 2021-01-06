@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -euo pipefail
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+DEPS_DIR=$3
+DEPS_IDX=$4
+
+echo "-----> Running sidecar supply"
+
+
+echo '---
+processes:
+- type: "clamav-sidecar"
+  command: "/usr/local/bin/clamscan -V"
+  limits:
+    memory: 256
+  platforms:
+    cloudfoundry:
+      sidecar_for: [ "worker"]
+' > "$DEPS_DIR"/"$DEPS_IDX"/launch.yml
