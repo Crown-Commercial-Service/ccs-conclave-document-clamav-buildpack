@@ -170,7 +170,7 @@ echo "-----> Running sidecar supply"
 echo '---
 processes:
 - type: "clamav-sidecar"
-  command: "systemctl status clamav-daemon.service"
+  command: "service clamav-daemon start"
   limits:
     memory: 256
   platforms:
