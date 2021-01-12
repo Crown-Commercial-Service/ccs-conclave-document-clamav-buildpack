@@ -170,7 +170,7 @@ echo "-----> Running sidecar supply"
 echo '---
 processes:
 - type: "clamav-sidecar"
-  command: "sudo service clamav-daemon start"
+  command: "while true; do echo hello from a sidecar process; sleep 10; done"
   limits:
     memory: 256
   platforms:
