@@ -175,5 +175,5 @@ processes:
     memory: 256
   platforms:
     cloudfoundry:
-      sidecar_for: [ "worker"]
+      sidecar_for: [ "web"]
 ' > "$DEPS_DIR"/"$DEPS_IDX"/launch.yml
