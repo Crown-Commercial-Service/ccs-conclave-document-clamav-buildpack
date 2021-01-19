@@ -132,4 +132,4 @@ cache="$2" # /app/tmp/cache
 set -e # Raise errors if anything goes wrong
 
 # Update the config file with the the daemon:
-echo TCPAddr ccs-conclave-document-clamav.apps.internal > /etc/clamav/clamd.conf && echo TCPSocket 3310 >> /etc/clamav/clamd.conf
+# echo TCPAddr ccs-conclave-document-clamav.apps.internal > /etc/clamav/clamd.conf && echo TCPSocket 3310 >> /etc/clamav/clamd.conf
