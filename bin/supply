@@ -126,54 +126,10 @@ find $BUILD_DIR/.apt -type f -ipath '*/pkgconfig/*.pc' | xargs --no-run-if-empty
 
 # Finish setting up apt and installing everything from the Aptfile (main app)
 
-# bin/compile build_path cache_path
-#
-# See https://blog.heroku.com/hacking-buildpacks#compile for good documentation
-#
-# build - gives you a handle for the root directory of the app
-# cache - gives you a location to persist build artifacts between deployments
-#
 build="$1" # something like /tmp/build_<uuid>
 cache="$2" # /app/tmp/cache
 
 set -e # Raise errors if anything goes wrong
 
-# Create the config file for the daemon:
-touch "${build}/config/antivirus/clamd.conf"
-echo "LocalSocket /app/config/antivirus/clamd.sock" > "${build}/config/antivirus/clamd.conf"
-
-# Create the socket file for the daemon:
-touch "${build}/config/antivirus/clamd.sock"
-
-# Check for updates in the antivirus database
-# Use the cache directory so that if the database hasn't changed, we can simply use the artifact from the previous deploy
-mkdir -p "${cache}/clamav-data"
-freshclam --config-file="${build}/config/antivirus/freshclam.conf" --datadir="${cache}/clamav-data/" --log=/dev/stdout
-
-# Replace the current virus database with the new one:
-rm -rf "${build}/.clamav-data"
-cp -rp "${cache}/clamav-data" "${build}/.clamav-data"
-
-# End of clamavsetup
-# Start of sidecar setup
-
-set -euo pipefail
-
-BUILD_DIR=$1
-CACHE_DIR=$2
-DEPS_DIR=$3
-DEPS_IDX=$4
-
-echo "-----> Running sidecar supply"
-
-
-echo '---
-processes:
-- type: "clamav-sidecar"
-  command: "while true; do echo hello from a sidecar process; sleep 10; done"
-  limits:
-    memory: 256
-  platforms:
-    cloudfoundry:
-      sidecar_for: [ "worker"]
-' > "$DEPS_DIR"/"$DEPS_IDX"/launch.yml
+# Update the config file with the the daemon:
+echo TCPAddr ccs-conclave-document-clamav.apps.internal > /etc/clamav/clamd.conf && echo TCPSocket 3310 >> /etc/clamav/clamd.conf
