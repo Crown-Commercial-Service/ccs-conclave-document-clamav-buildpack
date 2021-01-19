@@ -100,8 +100,7 @@ done
 
 
 # Update the config file with the the daemon:
-cp $BUILD_DIR/.apt/usr/share/doc/clamav-daemon/examples/clamd.conf.sample $BUILD_DIR/.apt/etc/clamav/clamd.conf
-echo TCPAddr ccs-conclave-document-clamav.apps.internal > $BUILD_DIR/.apt/etc/clamav/clamd.conf && echo TCPSocket 3310 >> $BUILD_DIR/.apt/etc/clamav/clamd.conf
+cp $BUILD_DIR/config/antivirus/clamd.conf $BUILD_DIR/.apt/etc/clamav/clamd.conf
 
 topic "Writing profile script"
 mkdir -p $BUILD_DIR/.profile.d
