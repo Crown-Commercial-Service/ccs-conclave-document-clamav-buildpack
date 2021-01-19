@@ -95,7 +95,7 @@ mkdir -p $BUILD_DIR/.apt
 
 for DEB in $(ls -1 $APT_CACHE_DIR/archives/*.deb); do
   topic "Installing $(basename $DEB)"
-  dpkg -x $DEB
+  dpkg -i $DEB
 done
 
 # Finish setting up apt and installing everything from the Aptfile (main app)
